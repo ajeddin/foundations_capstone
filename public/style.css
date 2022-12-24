@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Koulen&family=Lato&family=Nunito&family=Playfair+Display:ital@1&family=Prata&family=Raleway:ital,wght@1,100&family=Roboto&family=Roboto+Condensed&family=Teko&display=swap');
-body {
+/* body {
     /* width: 100vw;
     height: 100vh; */
    
     /* margin: 0; */
 
-}
+/* } 
 /* canvas {
     position: absolute;
 } */
@@ -58,10 +58,10 @@ color: #420039;
 border: solid 2px #420039;
 }
 
-#vantajs{
+/* #vantajs{
     width: 100%;
     height: 100vh;
-}
+} */
 
 
 /* #expressionButton:active {
