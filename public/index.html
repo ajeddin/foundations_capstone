@@ -6,13 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Face </title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="camera.css">
     <script defer src="../face-api.min.js"></script>
     <script defer src="./main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.clouds.min.js"></script>
 
-  
 </head>
 <body>
-    <div><video class="video-circle" id="video" width="800" height="600" muted></video></div>
+    <div class="header">
+        <h1>Header</h1>
+        <p>My supercool header</p>
+      </div>
+    <section id="vantajs">
+    <div><video class="video-circle" id="video" width="700" height="700" muted></video></div>
     <button id="expressionButton">Analyze Feeling</button>
+</section>
 </body>
+<script>
+    VANTA.CLOUDS({
+      el: "#vantajs",
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      speed: 0.70
+    })
+    </script>
 </html>

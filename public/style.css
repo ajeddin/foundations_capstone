@@ -11,8 +11,8 @@ body {
 } */
 
 .video-circle {
-    border-radius: 20%;
-    object-fit: cover;
+  border-radius: 100%;
+      object-fit: cover;
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
         padding: 0;
@@ -32,7 +32,7 @@ body {
     #expressionButton {
     flex-wrap: wrap;
     margin-top: 4vh;
-    margin-left: 36vh;
+    margin-left: 31vh;
     font-family: Raleway;
     font-weight: 0;
     font-size: 20px;
@@ -50,13 +50,20 @@ body {
     cursor: pointer;
 }
 #expressionButton:hover {
-	transition : 1000ms;
-    padding: 10px 50px;
-    transform : translateY(-0px);
-    background-color: #fff;
-    color: #420039;
-    border: solid 2px #420039;
+transition : 1550ms;
+padding: 10px 29px;
+transform : translateY(-9px);
+background-color: #fff;
+color: #420039;
+border: solid 2px #420039;
 }
+
+#vantajs{
+    width: 100%;
+    height: 100vh;
+}
+
+
 /* #expressionButton:active {
 	position:relative;
 	top:1px;
