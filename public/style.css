@@ -49,14 +49,14 @@
     align-items: center;
     cursor: pointer;
 }
-#expressionButton:hover {
+/* #expressionButton:hover {
 transition : 1550ms;
 padding: 10px 29px;
 transform : translateY(-9px);
 background-color: #fff;
 color: #420039;
 border: solid 2px #420039;
-}
+} */
 
 /* #vantajs{
     width: 100%;
@@ -69,5 +69,8 @@ border: solid 2px #420039;
 	top:1px;
 } */
 
-
+.vl {
+  border-left: 6px solid rgb(79, 11, 50);
+  height: 500px;
+}
 

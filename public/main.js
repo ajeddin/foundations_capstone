@@ -24,45 +24,43 @@ Promise.all([
     
 ]).then(startVideo)
 
-const expressionButton = async()=> {
+const expressionButton = async ()=> {
     // const canvas = faceapi.createCanvasFromMedia(video)
     // document.body.append(canvas) 
     // const displaySize = { width: cam.width, height: cam.height }
-    // faceapi.matchDimensions(canvas, displaySize)
-    const detectionPaint = async () => {  
-        const detections = await faceapi.detectAllFaces(cam,new faceapi.TinyFaceDetectorOptions()).withFaceExpressions() 
-            // .withFaceLandmarks() 
-            
-            // const resizedDetections = faceapi.resizeResults(detections, displaySize) 
-            
-            
-            // canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height)
-            
-            // faceapi.draw.drawDetections(canvas, resizedDetections)
-            // faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
-            // faceapi.draw.drawFaceExpressions(canvas, resizedDetections) 
-            // console.log(detections[0]['expressions']);
-            let {neutral, happy, sad, angry, surprised,fearful,disgusted}= detections[0]['expressions']
-            // console.log(detections[0]['expressions']);
-            let emotionArr = [neutral, happy, sad, angry, surprised,fearful,disgusted]
-            function ifFloat(emotions) {
-                newEmotionArr = []
-                for (i=0;i<emotions.length;i++){
-                    let numStr = String(emotions[i]);
-                    if (numStr.indexOf('e') === -1) {
-                        newEmotionArr.push(emotions[i])}}
-                return newEmotionArr
-            }
-            newARR = ifFloat(emotionArr)
-            // console.log(newARR);
-            max = Math.max.apply(Math,[...newARR])
-            console.log(max);
-            let index = emotionArr.findIndex(el => el === Math.max.apply(Math,[...newARR]))
-            // console.log(index);
-            var emotionMain = matchIndex(index)
-            console.log(emotionMain);
-        }
-        detectionPaint()
+    const detections = await faceapi.detectAllFaces(cam,new faceapi.TinyFaceDetectorOptions()).withFaceExpressions() 
+        
+    // .withFaceLandmarks() 
+    
+    // const resizedDetections = faceapi.resizeResults(detections, displaySize) 
+    
+    
+    // canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height)
+    
+    // faceapi.draw.drawDetections(canvas, resizedDetections)
+    // faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
+    // faceapi.draw.drawFaceExpressions(canvas, resizedDetections) 
+    // console.log(detections[0]['expressions']);
+    let  {neutral, happy, sad, angry, surprised,fearful,disgusted}=  await detections[0].expressions
+
+    console.log(detections[0]['expressions']);
+    let emotionArr =  [neutral, happy, sad, angry, surprised,fearful,disgusted]
+    function ifFloat(emotions) {
+        newEmotionArr = []
+        for (i=0;i<emotions.length;i++){
+            let numStr = String(emotions[i]);
+            if (numStr.indexOf('e') === -1) {
+                newEmotionArr.push(emotions[i])}}
+        return newEmotionArr
+    }
+    newARR = ifFloat(emotionArr)
+    // console.log(newARR);
+    max = Math.max.apply(Math,[...newARR])
+    console.log(max);
+    let index =  emotionArr.findIndex(el => el === Math.max.apply(Math,[...newARR]))
+    // console.log(index);
+    var emotionMain = matchIndex(index)
+    console.log(emotionMain);
         
     }
     button.addEventListener('click', expressionButton)
