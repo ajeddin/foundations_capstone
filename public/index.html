@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="camera.css">
     <script defer src="../face-api.min.js"></script>
+    <script defer src="./camera.js"></script>
     <script defer src="./main.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.clouds.min.js"></script> -->
@@ -20,8 +21,9 @@
       </div>
     <!-- <section id="vantajs"> -->
     <div><video class="video-circle" id="video" width="700" height="700" muted></video></div>
-    <button id="expressionButton">Analyze Feeling</button>
+    <button onClick="var t = this; t.disabled = true; setTimeout(function() {t.disabled = false;},1000);"id="expressionButton">Analyze Feeling</button>
     <div class="vl"></div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <!-- </section> -->
 </body>
