@@ -60,8 +60,38 @@ seed: (req,res) =>{
         res.sendStatus(200)
     }).catch(err => console.log('error seeding DB', err))
 
+},
+addQoute: (req,res)=>{
+    // we need to get them from body and add them here
+    let {qoute, emotionSelect, author } = req.body
+    sequelize.query(`
+    insert into qoutes(qoute, emotion,author)
+    values('${qoute}','${emotionSelect}','${author}')
+    `).then(() => {
+        console.log('added qoute')
+        res.sendStatus(200)
+    }).catch(err => console.log('error adding qoute', err))
+},
+getQoute:(req,res)=>{
+    console.log(req.body);
+    let {emotion} = req.body
+    console.log(emotion);
+    sequelize.query(`
+    select * from qoutes
+    where emotion = '${emotion}'
+    ORDER BY RANDOM()
+    LIMIT 1;
+
+    `).then(dbres => {
+        console.log(dbres[0]);
+        res.status(200).send(dbres[0])
+    }).catch(err => console.log('error selecting qoute', err))
+    
 }
 
 
-
 }
+// we need to also add a vew all funciton 
+// possibly incorpeate a delete 
+// if time add account and FAV
+// for now i have to add another thing 

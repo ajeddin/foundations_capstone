@@ -1,5 +1,9 @@
 const cam = document.querySelector('#video')
 const button = document.querySelector('#expressionButton')
+const qouteForm = document.querySelector('#qoute-input')
+const authorInput = document.querySelector('#authorInput')
+const emotionSelect = document.querySelector('#expression-select')
+const form = document.querySelector('form')
 async function startVideo() {
     const constraints = { video: true };
 
@@ -24,10 +28,11 @@ Promise.all([
     
 ]).then(startVideo)
 
-const expressionButton = async ()=> {
+async function expressionButton() {
     // const canvas = faceapi.createCanvasFromMedia(video)
     // document.body.append(canvas) 
     // const displaySize = { width: cam.width, height: cam.height }
+
     const detections = await faceapi.detectAllFaces(cam,new faceapi.TinyFaceDetectorOptions()).withFaceExpressions() 
         
     // .withFaceLandmarks() 
@@ -46,25 +51,20 @@ const expressionButton = async ()=> {
     let  {neutral, happy, sad, angry, surprised,fearful,disgusted}=  await detections[0].expressions
 
     console.log(detections[0]['expressions']);
-    let emotionArr =  [neutral, happy, sad, angry, surprised,fearful,disgusted]
-    function ifFloat(emotions) {
-        newEmotionArr = []
-        for (i=0;i<emotions.length;i++){
-            let numStr = String(emotions[i]);
-            if (numStr.indexOf('e') === -1) {
-                newEmotionArr.push(emotions[i])}}
-        return newEmotionArr
-    }
-    newARR = ifFloat(emotionArr)
+    let emotionArr = [neutral, happy, sad, angry, surprised,fearful,disgusted]
+
+    
+    newARR = await ifFloat(emotionArr)
     // console.log(newARR);
     max = Math.max.apply(Math,[...newARR])
     console.log(max);
     let index =  emotionArr.findIndex(el => el === Math.max.apply(Math,[...newARR]))
     // console.log(index);
-    var emotionMain = matchIndex(index)
+    let emotionMain = await matchIndex(index)
     console.log(emotionMain);
-        
-    }
+
+    getQoute(emotionMain)
+}
     button.addEventListener('click', expressionButton)
     
     function matchIndex(index) {
@@ -78,7 +78,7 @@ const expressionButton = async ()=> {
             emotion = 'sad'
         }
         else if (index ==3){
-        emotion = 'angry'
+        emotion = 'anger'
         }
         else if (index ==4){
             emotion = 'suprised'
@@ -92,4 +92,40 @@ const expressionButton = async ()=> {
         return emotion
     }
         
-       
+    
+function handleSubmit(e) {
+    e.preventDefault()
+    if (qouteForm.value < 1 ) {
+        alert ('You must enter a qoute')
+        return
+    }
+    if (authorInput.value < 1 ) {
+        alert ('You must enter a author')
+        return
+    }
+    let body = {
+        qoute: qouteForm.value, 
+        emotionSelect: emotionSelect.value, 
+        author: authorInput.value
+    }
+    axios.post('http://localhost:8765/addQoute', body)
+    .then(()=>alert ('Added to Qoutes'))
+    .catch(err => console.log(err))
+}
+function getQoute(emotions){
+    let body = {
+        emotion:emotions
+    }
+    console.log(body);
+    axios.post(`http://localhost:8765/getQoute`,body)
+    .then((res) => console.log(res.data) )
+        
+}
+form.addEventListener('submit',handleSubmit)
+function ifFloat(emotions) {
+    newEmotionArr = []
+    for (i=0;i<emotions.length;i++){
+        let numStr = String(emotions[i]);
+        if (numStr.indexOf('e') === -1) {
+            newEmotionArr.push(emotions[i])}}
+    return newEmotionArr}

@@ -23,7 +23,27 @@
     <div><video class="video-circle" id="video" width="700" height="700" muted></video></div>
     <button onClick="var t = this; t.disabled = true; setTimeout(function() {t.disabled = false;},1000);"id="expressionButton">Analyze Feeling</button>
     <div class="vl"></div>
+    <div>
+      <form>
+        <label for="qoute-input">Enter Your Qoute:</label>
+        <input type='text' id="qoute-input"/>
+        <label for="authorInput">Enter Your Author:</label>
+        <input type='text' id="authorInput"/>
+
+        <label for="expression-select">Emotion:</label>
+        <select id="expression-select">
+          <option value="happy">happy</option>
+          <option value="sad">sad</option>
+          <option value="anger">anger</option>
+          <option value="suprised">suprised</option>
+          <option value="fearful">fearful</option>
+          <option value="disgusted">disgusted</option>
+        </select>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    
 
 <!-- </section> -->
 </body>
