@@ -4,6 +4,9 @@ const qouteForm = document.querySelector('#qoute-input')
 const authorInput = document.querySelector('#authorInput')
 const emotionSelect = document.querySelector('#expression-select')
 const form = document.querySelector('form')
+const qouteRes = document.querySelector('#qoute-response') 
+const allQoutes = document.querySelector('#getAllQoutes') 
+
 async function startVideo() {
     const constraints = { video: true };
 
@@ -116,11 +119,23 @@ function getQoute(emotions){
     let body = {
         emotion:emotions
     }
+    qouteRes.innerHTML = ''
     console.log(body);
     axios.post(`http://localhost:8765/getQoute`,body)
-    .then((res) => console.log(res.data) )
+    .then((res) => {
+        console.log(res.data[0]);
+        let qouteCard = `
+        <div class="qoute-card">
+                    <h2>${res.data[0].qoute},</h2>
+                    <h3>Author: ${res.data[0].author} Emotion:${res.data[0].emotion}</h3>
+                    </div>
+        `
+        qouteRes.innerHTML += qouteCard
+    } )
         
 }
+
+
 form.addEventListener('submit',handleSubmit)
 function ifFloat(emotions) {
     newEmotionArr = []

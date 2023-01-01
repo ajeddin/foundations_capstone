@@ -15,15 +15,15 @@
 
 </head>
 <body>
-    <div class="header">
-        <h1>Header</h1>
-        <p>My supercool header</p>
-      </div>
     <!-- <section id="vantajs"> -->
     <div><video class="video-circle" id="video" width="700" height="700" muted></video></div>
     <button onClick="var t = this; t.disabled = true; setTimeout(function() {t.disabled = false;},1000);"id="expressionButton">Analyze Feeling</button>
     <div class="vl"></div>
+    <nav >
+      <a id="buttonNav" href="./home.html"><button>View All Qoutes</button> </a>
     <div>
+
+      </nav>
       <form>
         <label for="qoute-input">Enter Your Qoute:</label>
         <input type='text' id="qoute-input"/>
@@ -41,6 +41,8 @@
         </select>
         <input type="submit" value="Submit">
       </form>
+      <section id="qoute-response"></section>
+
     </div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     

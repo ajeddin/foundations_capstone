@@ -81,12 +81,17 @@ getQoute:(req,res)=>{
     where emotion = '${emotion}'
     ORDER BY RANDOM()
     LIMIT 1;
-
+    
     `).then(dbres => {
-        console.log(dbres[0]);
         res.status(200).send(dbres[0])
     }).catch(err => console.log('error selecting qoute', err))
     
+},
+getAllQoutes: (req,res)=>{
+    sequelize.query(`
+    select * from qoutes
+    
+    `).then((dbres)=> res.status(200).send(dbres[0]))
 }
 
 
