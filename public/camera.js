@@ -1,5 +1,6 @@
 const cam = document.querySelector('#video')
 const button = document.querySelector('#expressionButton')
+// const refreshbutton = document.querySelector('#diffQoute')
 const qouteForm = document.querySelector('#qoute-input')
 const authorInput = document.querySelector('#authorInput')
 const emotionSelect = document.querySelector('#expression-select')
@@ -53,35 +54,34 @@ async function expressionButton() {
     
     let  {neutral, happy, sad, angry, surprised,fearful,disgusted}=  await detections[0].expressions
 
-    console.log(detections[0]['expressions']);
+    // console.log(detections[0]['expressions']);
     let emotionArr = [neutral, happy, sad, angry, surprised,fearful,disgusted]
 
     
     newARR = await ifFloat(emotionArr)
     // console.log(newARR);
     max = Math.max.apply(Math,[...newARR])
-    console.log(max);
+    // console.log(max);
     let index =  emotionArr.findIndex(el => el === Math.max.apply(Math,[...newARR]))
     // console.log(index);
-    let emotionMain = await matchIndex(index)
-    console.log(emotionMain);
+    var emotionMain = await matchIndex(index)
+    // console.log(emotionMain);
 
     getQoute(emotionMain)
 }
-    button.addEventListener('click', expressionButton)
-    
-    function matchIndex(index) {
-        if (index ==0){
+
+function matchIndex(index) {
+    if (index ==0){
         emotion = 'neutral'
-        } 
-        else if (index ==1){
+    } 
+    else if (index ==1){
             emotion = 'happy'
         }
         else if (index ==2){
             emotion = 'sad'
         }
         else if (index ==3){
-        emotion = 'anger'
+            emotion = 'anger'
         }
         else if (index ==4){
             emotion = 'suprised'
@@ -94,7 +94,7 @@ async function expressionButton() {
         }
         return emotion
     }
-        
+    
     
 function handleSubmit(e) {
     e.preventDefault()
@@ -126,21 +126,28 @@ function getQoute(emotions){
         console.log(res.data[0]);
         let qouteCard = `
         <div class="qoute-card">
-                    <h2>${res.data[0].qoute},</h2>
-                    <h3>Author: ${res.data[0].author} Emotion:${res.data[0].emotion}</h3>
-                    </div>
+        <h2 id='qouteDisplay'>${res.data[0].qoute}</h2>
+        <h3 id='author'>Author: ${res.data[0].author}</h3>
+        <h3 id='emotion'>Qoute: ${res.data[0].emotion}</h3>
+        </div>
         `
         qouteRes.innerHTML += qouteCard
     } )
-        
+    
 }
 
-
-form.addEventListener('submit',handleSubmit)
 function ifFloat(emotions) {
     newEmotionArr = []
     for (i=0;i<emotions.length;i++){
         let numStr = String(emotions[i]);
         if (numStr.indexOf('e') === -1) {
             newEmotionArr.push(emotions[i])}}
-    return newEmotionArr}
+            return newEmotionArr}
+            
+            
+const refreshQoute =() =>{
+    getQoute(emotionMain)
+}
+button.addEventListener('click', expressionButton)
+form.addEventListener('submit',handleSubmit)
+// refreshbutton.addEventListener('click',refreshQoute)

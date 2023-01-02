@@ -4,7 +4,7 @@ const app = express()
 const cors = require('cors')
 const {SERVER_PORT} = process.env
 const {
-seed,addQoute,getQoute,getAllQoutes
+seed,addQoute,getQoute,getAllQoutes,deleteQoute
 } = require('./controller.js')
 
 app.use(express.json())
@@ -15,7 +15,7 @@ app.post('/seed', seed)
 app.post('/addQoute', addQoute) 
 app.post('/getQoute', getQoute) 
 app.get('/getAllQoutes',getAllQoutes)
-
+app.delete ('/deleteQoute/:id',deleteQoute)
 
 console.log('connected');
 

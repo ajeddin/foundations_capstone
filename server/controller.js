@@ -92,6 +92,14 @@ getAllQoutes: (req,res)=>{
     select * from qoutes
     
     `).then((dbres)=> res.status(200).send(dbres[0]))
+},
+deleteQoute: (req,res)=>{
+    let {id} = req.params
+    console.log(id);
+    sequelize.query(`
+    DELETE FROM qoutes
+    where qoutes_id = ${id}
+    `).then(()=> res.sendStatus(200))
 }
 
 
