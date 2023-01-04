@@ -9,7 +9,42 @@
 /* canvas {
     position: absolute;
 } */
+#caroselWebcam{
+    display: flex;
+    border: 3px solid #fff;
+    padding: 20px;
+}
+#webcamButton {
+    width: 50%;
+    /* float: left; */
+    /* padding: 20px; */
 
+}
+#GIFQoute {
+    width: 50%;
+    /* float: right; */
+
+
+}
+#vanta-canvas{
+    position:absolute;
+    z-index:-1;
+    width:100%;
+    height: 100%;
+}
+#carouselRES {
+    display: flex;
+    /* position: relative;
+    height: max-content;
+    width: max-content;
+    padding-left: 170vh;
+    padding-top: 20vh;
+    padding: 20px;
+    padding-right: 0px;
+    padding-left: 230px;
+    border-left-width: 20px; */
+
+}
 .video-circle {
   border-radius: 100%;
       object-fit: cover;
@@ -29,7 +64,26 @@
         inset 22px -22px 44px #f6e9e9;
         
     } */
+    /* #all {
+        display: flex;
+    } */
+    #form {
+        display: inline;
+    }
+    #qouteDisplay {
+        font-family: Raleway;
+        color: #fff;
+        background-color:  #c8adc0;
+        
+        
+    }
+    .qoute-card {
+        
+        font-family: Raleway;
+        background-color:  #c8adc0;
+    }
     #expressionButton {
+    position: center;
     flex-wrap: wrap;
     margin-top: 4vh;
     margin-left: 31vh;
@@ -37,7 +91,7 @@
     font-weight: 0;
     font-size: 20px;
     color: #fff;
-    background-color: #c8adc0;
+    background-color:  #c8adc0;
     padding: 10px 30px;
     border: solid #c8adc0 2px;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;

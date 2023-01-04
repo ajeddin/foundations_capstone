@@ -19,6 +19,7 @@
   "homepage": "https://github.com/ajeddin/foundations_capstone#readme",
   "dependencies": {
     "@tensorflow/tfjs-core": "^4.1.0",
+    "axios": "^1.2.2",
     "canvas": "^2.10.2",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",

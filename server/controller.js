@@ -1,4 +1,6 @@
 require('dotenv').config()
+const axios= require('axios');
+
 const {CONNECTION_STRING}= process.env
 const Sequelize = require('sequelize')
 const sequelize = new Sequelize(CONNECTION_STRING, {
@@ -62,7 +64,6 @@ seed: (req,res) =>{
 
 },
 addQoute: (req,res)=>{
-    // we need to get them from body and add them here
     let {qoute, emotionSelect, author } = req.body
     sequelize.query(`
     insert into qoutes(qoute, emotion,author)
@@ -73,9 +74,10 @@ addQoute: (req,res)=>{
     }).catch(err => console.log('error adding qoute', err))
 },
 getQoute:(req,res)=>{
-    console.log(req.body);
+    // console.log(req.body);
     let {emotion} = req.body
-    console.log(emotion);
+    // console.log(emotion);
+    
     sequelize.query(`
     select * from qoutes
     where emotion = '${emotion}'
@@ -90,21 +92,24 @@ getQoute:(req,res)=>{
 getAllQoutes: (req,res)=>{
     sequelize.query(`
     select * from qoutes
+    order by qoutes_id DESC
     
     `).then((dbres)=> res.status(200).send(dbres[0]))
 },
 deleteQoute: (req,res)=>{
     let {id} = req.params
-    console.log(id);
+    // console.log(id);
     sequelize.query(`
     DELETE FROM qoutes
     where qoutes_id = ${id}
     `).then(()=> res.sendStatus(200))
+},
+getGIF:(req,res) =>{
+    let {emotion} = req.body
+    // console.log(req);
+    console.log(emotion);
+    axios.get(`https://api.giphy.com/v1/gifs/search?api_key=VBHsjkyygygTHvjPCIGBxCMZDP9xaknc&q=${emotion}&limit=4&offset=0&rating=pg&lang=en`).then(response => {
+        res.status(200).send(response.data)
+    })
 }
-
-
 }
-// we need to also add a vew all funciton 
-// possibly incorpeate a delete 
-// if time add account and FAV
-// for now i have to add another thing 

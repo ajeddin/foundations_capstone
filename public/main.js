@@ -8,13 +8,13 @@ const getAllQoutes = () =>{
 const qouteCard = document.createElement('div')
 
 qouteCard.classList.add('qoute-card')
-    
+
         qouteCard.innerHTML = `    
         <div id="qoute-${qoute['qoutes_id']}" class="qoute-card">
         <h2 id="qoute">${qoute.qoute}</h2>
         <h3 id='author'>Author: ${qoute.author}</h3>
         <h3 id='emotion'>Qoute: ${qoute.emotion}</h3>
-        <button onclick="deleteQoute(${qoute.qoutes_id})">delete</button>
+        <button id="expressionButton" onclick="deleteQoute(${qoute.qoutes_id})">delete</button>
         </div>
         `
 

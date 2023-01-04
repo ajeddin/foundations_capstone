@@ -6,8 +6,8 @@ const authorInput = document.querySelector('#authorInput')
 const emotionSelect = document.querySelector('#expression-select')
 const form = document.querySelector('form')
 const qouteRes = document.querySelector('#qoute-response') 
+const carouselRes = document.querySelector('#carouselRES') 
 const allQoutes = document.querySelector('#getAllQoutes') 
-
 async function startVideo() {
     const constraints = { video: true };
 
@@ -33,41 +33,20 @@ Promise.all([
 ]).then(startVideo)
 
 async function expressionButton() {
-    // const canvas = faceapi.createCanvasFromMedia(video)
-    // document.body.append(canvas) 
-    // const displaySize = { width: cam.width, height: cam.height }
-
-    const detections = await faceapi.detectAllFaces(cam,new faceapi.TinyFaceDetectorOptions()).withFaceExpressions() 
-        
-    // .withFaceLandmarks() 
-    
-    // const resizedDetections = faceapi.resizeResults(detections, displaySize) 
-    
-    
-    // canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height)
-    
-    // faceapi.draw.drawDetections(canvas, resizedDetections)
-    // faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
-    // faceapi.draw.drawFaceExpressions(canvas, resizedDetections) 
-    // console.log(detections[0]['expressions']);
-    // console.log(detections);
+    const detections = await faceapi.detectAllFaces(cam,new faceapi.TinyFaceDetectorOptions()).withFaceExpressions()  
     
     let  {neutral, happy, sad, angry, surprised,fearful,disgusted}=  await detections[0].expressions
-
-    // console.log(detections[0]['expressions']);
+    console.log(detections[0].expressions);
     let emotionArr = [neutral, happy, sad, angry, surprised,fearful,disgusted]
 
     
     newARR = await ifFloat(emotionArr)
-    // console.log(newARR);
     max = Math.max.apply(Math,[...newARR])
-    // console.log(max);
     let index =  emotionArr.findIndex(el => el === Math.max.apply(Math,[...newARR]))
-    // console.log(index);
     var emotionMain = await matchIndex(index)
-    // console.log(emotionMain);
 
     getQoute(emotionMain)
+    getGIF(emotionMain)
 }
 
 function matchIndex(index) {
@@ -135,6 +114,58 @@ function getQoute(emotions){
     } )
     
 }
+
+function getGIF(emotion){
+    
+    carouselRes.innerHTML = ''
+    axios.post('http://localhost:8765/getGIF',{emotion})
+    .then(res => {
+        let {url: gifOne} = res.data.data[0].images.original
+        let {title: gifOneAlt} = res.data.data[0]
+        let {url: gifTwo} = res.data.data[1].images.original
+        let {title: gifTwoAlt} = res.data.data[1]
+        let {url: gifThree} = res.data.data[2].images.original
+        let {title: gifThreeAlt} = res.data.data[2]
+      let gifTest = `
+      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="1"></li>
+          <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="item active">
+            <img src="${gifOne}" alt="${gifOneAlt}">
+          </div>
+      
+          <div class="item">
+            <img src="${gifTwo}" alt="${gifTwoAlt}">
+          </div>
+      
+          <div class="item">
+            <img src="${gifThree}" alt="${gifThreeAlt}">
+          </div>
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+      `
+      carouselRes.innerHTML += gifTest
+    })
+    .catch(err=>console.log(err))
+}
+// function getGif(emotion){
+//     gif ="https://giphy.com/embed/W0c3xcZ3F1d0EYYb0f"
+//     if (emotion == 'happy'){
+//        gif= 'https://giphy.com/embed/10UeedrT5MIfPG'
+//     } 
+//     return gif
+// }
 
 function ifFloat(emotions) {
     newEmotionArr = []
