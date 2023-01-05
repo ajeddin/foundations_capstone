@@ -9,75 +9,83 @@
     <link rel="icon" href="favicon (1).ico?v=2">
     <script defer src="../face-api.min.js"></script>
     <script defer src="./camera.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-</head>
-<body>
-  <section id="vanta-canvas">
-  <div id="caroselWebcam">
-    <div id="GIFQoute">
-      <div id="carouselRES"></div>      
-      <section id="qoute-response"></section>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+  </head>
+  <body>
+    <section id="vanta-canvas">
+      <div id="caroselWebcam">
+        <div id="GIFQOUTEVIEWALL">
+            <a id="buttonNav" href="./qouteView.html">View All Qoutes</a>
+        <div id="GIFQoute">
+          <div id="carouselRES">
+            <img src="./placeholder.png" id="gifPlaceholder"></img>
+          </div>      
+          <div id="qoute-response"></div>
+        </div>
      </div>
-    <div class="webcamButton"><video class="video-circle" id="video" width="700" height="700" muted></video>
-      <button onClick="var t = this; t.disabled = true; setTimeout(function() {t.disabled = false;},2000);"id="expressionButton">Analyze Feeling</button>
+     
+     <div class="webcamButton">
+       <button onClick="var t = this; t.disabled = true; setTimeout(function() {t.disabled = false;},2000); "id="expressionButton">Analyze Feeling</button>
+      <video class="video-circle" id="video" width="700" height="700" muted></video>
     </div>
   </div>
   <div id="form">
     <form>
-    </nav>
-    <label for="qoute-input">Enter Your Qoute:</label>
-    <input type='text' id="qoute-input"/>
-    <label for="authorInput">Enter Your Author:</label>
-    <input type='text' id="authorInput"/>
-    
-    <label for="expression-select">Emotion:</label>
-    <select id="expression-select">
-      <option value="happy">happy</option>
-      <option value="sad">sad</option>
-      <option value="anger">anger</option>
-      <option value="suprised">suprised</option>
-      <option value="fearful">fearful</option>
-      <option value="disgusted">disgusted</option>
-    </select>
+    <div id="qouteINPUT">
+      <label for="qoute-input">Enter Your Qoute:</label>
+      <input type='text' id="qoute-input"/>
+
+    </div>
+    <div id="authorINPUT">
+
+      <label for="authorInput">Enter Your Author:</label>
+      <input type='text' id="authorInput"/>
+
+    </div>
+    <div id="expressionInput">
+      <label for="expression-select">Emotion:</label>
+      <select id="expression-select">
+        <option value="happy">happy</option>
+        <option value="sad">sad</option>
+        <option value="anger">anger</option>
+        <option value="suprised">suprised</option>
+        <option value="fearful">fearful</option>
+        <option value="disgusted">disgusted</option>
+      </select>
+    </div>
     <input type="submit" value="Submit">
   </form>
   
   </div>
   </div>
-
-    <nav >
-      <a id="buttonNav" href="./qouteView.html"><button>View All Qoutes</button> </a>
+</section>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r120/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.22/vanta.birds.min.js"></script>
-    <script type="text/javascript">
-    VANTA.BIRDS({
-      el: "#vanta-canvas",
-      mouseControls: true,
-      touchControls: false,
-      gyroControls: false,
-      minHeight: 200.00,
-      minWidth: 200.00,
-      scale: 1.00,
-      scaleMobile: 1.00,
-      color1: 0x3850,
-      color2: 0x30818e,
-      colorMode: "variance",
-      birdSize: 2.00,
-      wingSpan: 19.00,
-      speedLimit: 4.00,
-      separation: 56.00,
-      alignment: 54.00,
-      cohesion: 38.00,
-      quantity: 2.00
-    })
-    
-    </script>
+
+    <script>
+ VANTA.NET({
+  el: "#vanta-canvas",
+  mouseControls: false,
+  touchControls: false,
+  gyroControls: false,
+  minHeight: 200.00,
+  minWidth: 200.00,
+  scale: 1.00,
+  scaleMobile: 1.00,
+  color: 0x574343,
+  backgroundColor: 0x0,
+  points: 12.00,
+  maxDistance: 19.00,
+  spacing: 13.00,
+  showDots: false
+})
+</script>
 </body>
 
 </html>

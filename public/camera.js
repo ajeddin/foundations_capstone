@@ -1,6 +1,5 @@
 const cam = document.querySelector('#video')
 const button = document.querySelector('#expressionButton')
-// const refreshbutton = document.querySelector('#diffQoute')
 const qouteForm = document.querySelector('#qoute-input')
 const authorInput = document.querySelector('#authorInput')
 const emotionSelect = document.querySelector('#expression-select')
@@ -8,6 +7,8 @@ const form = document.querySelector('form')
 const qouteRes = document.querySelector('#qoute-response') 
 const carouselRes = document.querySelector('#carouselRES') 
 const allQoutes = document.querySelector('#getAllQoutes') 
+const placer = document.querySelector('#gifPlaceholder') 
+
 async function startVideo() {
     const constraints = { video: true };
 
@@ -26,7 +27,6 @@ async function startVideo() {
 
 Promise.all([
     faceapi.nets.tinyFaceDetector.loadFromUri('/models'), 
-    // faceapi.nets.faceLandmark68Net.loadFromUri('/models'), 
     faceapi.nets.faceRecognitionNet.loadFromUri('/models'), 
     faceapi.nets.faceExpressionNet.loadFromUri('/models') 
     
@@ -104,8 +104,8 @@ function getQoute(emotions){
     .then((res) => {
         console.log(res.data[0]);
         let qouteCard = `
-        <div class="qoute-card">
-        <h2 id='qouteDisplay'>${res.data[0].qoute}</h2>
+        <div class="qoutecard">
+        <h2 id='qouteDisplay'>"${res.data[0].qoute}"</h2>
         <h3 id='author'>Author: ${res.data[0].author}</h3>
         <h3 id='emotion'>Qoute: ${res.data[0].emotion}</h3>
         </div>
@@ -116,7 +116,7 @@ function getQoute(emotions){
 }
 
 function getGIF(emotion){
-    
+    placer.remove()
     carouselRes.innerHTML = ''
     axios.post('http://localhost:8765/getGIF',{emotion})
     .then(res => {
@@ -144,6 +144,7 @@ function getGIF(emotion){
       
           <div class="item">
             <img src="${gifThree}" alt="${gifThreeAlt}">
+
           </div>
         <a class="left carousel-control" href="#myCarousel" data-slide="prev">
           <span class="glyphicon glyphicon-chevron-left"></span>
@@ -159,14 +160,6 @@ function getGIF(emotion){
     })
     .catch(err=>console.log(err))
 }
-// function getGif(emotion){
-//     gif ="https://giphy.com/embed/W0c3xcZ3F1d0EYYb0f"
-//     if (emotion == 'happy'){
-//        gif= 'https://giphy.com/embed/10UeedrT5MIfPG'
-//     } 
-//     return gif
-// }
-
 function ifFloat(emotions) {
     newEmotionArr = []
     for (i=0;i<emotions.length;i++){
@@ -181,4 +174,3 @@ const refreshQoute =() =>{
 }
 button.addEventListener('click', expressionButton)
 form.addEventListener('submit',handleSubmit)
-// refreshbutton.addEventListener('click',refreshQoute)

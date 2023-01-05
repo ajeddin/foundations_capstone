@@ -1,130 +1,179 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Koulen&family=Lato&family=Nunito&family=Playfair+Display:ital@1&family=Prata&family=Raleway:ital,wght@1,100&family=Roboto&family=Roboto+Condensed&family=Teko&display=swap');
-/* body {
-    /* width: 100vw;
-    height: 100vh; */
-   
-    /* margin: 0; */
-
-/* } 
-/* canvas {
-    position: absolute;
-} */
-#caroselWebcam{
-    display: flex;
-    border: 3px solid #fff;
-    padding: 20px;
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Koulen&family=Lato&family=Nunito&family=Playfair+Display:ital@1&family=Prata&family=Raleway:ital,wght@1,100&family=Roboto&family=Roboto+Condensed&family=Teko&display=swap");
+* {
+  margin: 0%;
+  padding: 0%;
 }
-#webcamButton {
-    width: 50%;
-    /* float: left; */
-    /* padding: 20px; */
-
-}
-#GIFQoute {
-    width: 50%;
-    /* float: right; */
-
-
-}
-#vanta-canvas{
-    position:absolute;
-    z-index:-1;
-    width:100%;
-    height: 100%;
-}
-#carouselRES {
-    display: flex;
-    /* position: relative;
-    height: max-content;
-    width: max-content;
-    padding-left: 170vh;
-    padding-top: 20vh;
-    padding: 20px;
-    padding-right: 0px;
-    padding-left: 230px;
-    border-left-width: 20px; */
-
+#caroselWebcam {
+  display: flex;
+  /* border: 3px solid #fff; */
+  padding-top: 20px;
 }
 .video-circle {
   border-radius: 100%;
-      object-fit: cover;
-    -webkit-transform: scaleX(-1);
-    transform: scaleX(-1);
-        padding: 0;
-    display: flex;
-    align-items: left;
-    justify-content: left;
-     margin-top: 6vh;
-     margin-left: 7vh;
-    }
-    /* #expressionButton {
-        border-radius: 40px;
-        background: #cfc4c4;
-        box-shadow: inset -22px 22px 44px #a89f9f,
-        inset 22px -22px 44px #f6e9e9;
-        
-    } */
-    /* #all {
-        display: flex;
-    } */
-    #form {
-        display: inline;
-    }
-    #qouteDisplay {
-        font-family: Raleway;
-        color: #fff;
-        background-color:  #c8adc0;
-        
-        
-    }
-    .qoute-card {
-        
-        font-family: Raleway;
-        background-color:  #c8adc0;
-    }
-    #expressionButton {
-    position: center;
-    flex-wrap: wrap;
-    margin-top: 4vh;
-    margin-left: 31vh;
-    font-family: Raleway;
-    font-weight: 0;
-    font-size: 20px;
-    color: #fff;
-    background-color:  #c8adc0;
-    padding: 10px 30px;
-    border: solid #c8adc0 2px;
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
-    border-radius: 50px;
-    transition : 1000ms;
-    transform: translateY(0);
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    cursor: pointer;
+  object-fit: cover;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  padding: 0;
+  /* display: flex; */
+  /* align-items: left; */
+  /* justify-content: left; */
 }
-/* #expressionButton:hover {
-transition : 1550ms;
-padding: 10px 29px;
-transform : translateY(-9px);
-background-color: #fff;
-color: #420039;
-border: solid 2px #420039;
-} */
+.webcamButton {
+  margin-left: 17vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#expressionButton {
+  /* position: center; */
+  /* flex-wrap: wrap; */
+  margin-bottom: 2vh;
+  /* margin-left: 31vh;  */
+  font-family: Raleway;
+  font-weight: 0;
+  font-size: 20px;
+  color: #fff;
+  background-color: #0b0335;
 
-/* #vantajs{
-    width: 100%;
-    height: 100vh;
-} */
-
-
-/* #expressionButton:active {
-	position:relative;
-	top:1px;
-} */
-
-.vl {
-  border-left: 6px solid rgb(79, 11, 50);
-  height: 500px;
+  padding: 10px 30px;
+  border: solid #ff00b3 2px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  border-radius: 50px;
+  transition: 1000ms;
+  transform: translateY(0);
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* align-items: center; */
+  cursor: pointer;
+}
+#gifPlaceholder {
+  border-radius: 10%;
+  min-width: 480px;
+  max-width: 480px;
+  max-height: 480px;
+  min-height: 480px;
+  border: solid rgb(255, 255, 255) 1px;
+}
+.item img {
+  border-radius: 10%;
+  min-width: 480px;
+  max-width: 480px;
+  max-height: 480px;
+  min-height: 480px;
 }
 
+.carousel-control {
+  border: 100px solid transparent;
+}
+#qouteDisplay {
+  font-family: Raleway;
+  color: #fff;
+  background-color: #c8adc0;
+  padding: 5px;
+}
+
+#GIFQOUTEVIEWALL {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#buttonNav {
+  margin-bottom: 2vh;
+
+  font-family: Raleway;
+  font-weight: 0;
+  font-size: 20px;
+  color: #fff;
+  background-color: #0b0335;
+  padding: 10px 30px;
+  border: solid #ff00b3 2px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  border-radius: 50px;
+  transition: 1000ms;
+  transform: translateY(0);
+  /* display: flex; */
+  /* flex-direction: row; */
+  cursor: pointer;
+}
+#buttonNavView {
+  padding-top: 5vh;
+
+  font-family: Raleway;
+  font-weight: 0;
+  font-size: 20px;
+  color: #fff;
+  background-color: #0b0335;
+  padding: 10px 30px;
+  border: solid #ff00b3 2px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  border-radius: 50px;
+  transition: 1000ms;
+  transform: translateY(0);
+  /* display: flex; */
+  /* flex-direction: row; */
+  cursor: pointer;
+}
+#GIFQoute {
+  width: 50%;
+  min-width: 937px;
+  min-height: 650px;
+}
+#vanta-canvas {
+  position: absolute;
+  /* z-index:-1; */
+  /* overflow: scroll; */
+  width: 100%;
+  height: 100%;
+}
+#vanta-canvass {
+  position: absolute;
+  /* z-index:-1; */
+  /* top: -50;
+    left: -50; */
+  width: 100vw;
+  height: 100vh;
+  /* overflow-x: scroll; */
+  /* background-repeat: repeat-x; */
+}
+
+
+#carouselRES {
+  display: flex;
+  justify-content: center;
+}
+#form {
+  display: inline;
+}
+.qoute-card {
+  width: 500px;
+}
+#allQoutes {
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  font-family: Raleway;
+  color: rgb(255, 0, 0);
+  padding: 5px;
+  justify-content: space-between;
+}
+#expressionsButton {
+  position: center;
+  flex-wrap: wrap;
+  margin-top: 4vh;
+  margin-left: 31vh;
+  font-family: Raleway;
+  font-weight: 0;
+  font-size: 20px;
+  color: #fff;
+  background-color: #9a3a7d;
+  padding: 10px 30px;
+  border: solid #ee79cb 2px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  border-radius: 50px;
+  transition: 1000ms;
+  transform: translateY(0);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+}
