@@ -3,10 +3,14 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const {SERVER_PORT} = process.env
+app.use(express.static('public'))
+
 const {
 seed,addQoute,getQoute,getAllQoutes,deleteQoute,getGIF
 } = require('./controller.js')
-
+app.get('/',(req,res)=>{
+    res.sendFile(path.join(__dirname,'../public'))
+})
 app.use(express.json())
 app.use(cors())
 
