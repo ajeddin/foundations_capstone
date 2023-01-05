@@ -36,7 +36,6 @@ async function expressionButton() {
     const detections = await faceapi.detectAllFaces(cam,new faceapi.TinyFaceDetectorOptions()).withFaceExpressions()  
     
     let  {neutral, happy, sad, angry, surprised,fearful,disgusted}=  await detections[0].expressions
-    console.log(detections[0].expressions);
     let emotionArr = [neutral, happy, sad, angry, surprised,fearful,disgusted]
 
     
@@ -99,10 +98,8 @@ function getQoute(emotions){
         emotion:emotions
     }
     qouteRes.innerHTML = ''
-    console.log(body);
     axios.post(`http://localhost:8765/getQoute`,body)
     .then((res) => {
-        console.log(res.data[0]);
         let qouteCard = `
         <div class="qoutecard">
         <h2 id='qouteDisplayIndex'>"${res.data[0].qoute}"</h2>

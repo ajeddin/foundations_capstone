@@ -74,9 +74,7 @@ addQoute: (req,res)=>{
     }).catch(err => console.log('error adding qoute', err))
 },
 getQoute:(req,res)=>{
-    // console.log(req.body);
     let {emotion} = req.body
-    // console.log(emotion);
     
     sequelize.query(`
     select * from qoutes
@@ -98,7 +96,6 @@ getAllQoutes: (req,res)=>{
 },
 deleteQoute: (req,res)=>{
     let {id} = req.params
-    // console.log(id);
     sequelize.query(`
     DELETE FROM qoutes
     where qoutes_id = ${id}
@@ -106,7 +103,6 @@ deleteQoute: (req,res)=>{
 },
 getGIF:(req,res) =>{
     let {emotion} = req.body
-    // console.log(req);
     console.log(emotion);
     axios.get(`https://api.giphy.com/v1/gifs/search?api_key=VBHsjkyygygTHvjPCIGBxCMZDP9xaknc&q=${emotion}&limit=4&offset=0&rating=pg&lang=en`).then(response => {
         res.status(200).send(response.data)
