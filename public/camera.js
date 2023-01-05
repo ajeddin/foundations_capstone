@@ -105,9 +105,9 @@ function getQoute(emotions){
         console.log(res.data[0]);
         let qouteCard = `
         <div class="qoutecard">
-        <h2 id='qouteDisplay'>"${res.data[0].qoute}"</h2>
-        <h3 id='author'>Author: ${res.data[0].author}</h3>
-        <h3 id='emotion'>Qoute: ${res.data[0].emotion}</h3>
+        <h2 id='qouteDisplayIndex'>"${res.data[0].qoute}"</h2>
+        <h3 id='authorIndex'>Author: ${res.data[0].author}</h3>
+        <h3 id='emotionIndex'>Emotion: ${res.data[0].emotion}</h3>
         </div>
         `
         qouteRes.innerHTML += qouteCard
