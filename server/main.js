@@ -8,11 +8,11 @@ app.use(express.static('public'))
 const {
 seed,addQoute,getQoute,getAllQoutes,deleteQoute,getGIF
 } = require('./controller.js')
+app.use(express.json())
+app.use(cors())
 app.get('/',(req,res)=>{
     res.sendFile(path.join(__dirname,'../public'))
 })
-app.use(express.json())
-app.use(cors())
 
 
 app.post('/seed', seed)
